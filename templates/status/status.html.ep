@@ -1,0 +1,21 @@
+% layout 'default';
+% title 'PBuild Status';
+<h2><%= $msg %></h2>
+<pre>
+% for my $code ( @$codes_seen) {
+  <%= $code %>: <%= scalar @{$code_pkgs->{$code}} %>
+%   for my $pkg ( @{$code_pkgs->{$code}}) {
+      % if ($result->{$pkg}->{'details'}) {
+      <%= $pkg %>: <%= $result->{$pkg}->{'details'} %>
+      % } else {
+      <%= $pkg %>
+      % }
+%   }
+% }
+</pre>
+<p>
+  This page was generated from the template "templates/example/welcome.html.ep"
+  and the layout "templates/layouts/default.html.ep",
+  <%= link_to 'click here' => url_for %> to reload the page or
+  <%= link_to 'here' => '/index.html' %> to move forward to a static page.
+</p>
